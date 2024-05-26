@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_bonus.h                                      :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkerroum < tkerroum@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/25 10:28:40 by tkerroum          #+#    #+#             */
-/*   Updated: 2024/05/25 18:31:52 by tkerroum         ###   ########.fr       */
+/*   Created: 2024/05/25 16:07:38 by tkerroum          #+#    #+#             */
+/*   Updated: 2024/05/25 18:30:21 by tkerroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft_bonus.h"
 
-typedef struct s_list
+void ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-void *content;
-struct s_list *next;
-} t_list;
-
-t_list *ft_lstnew(void *content);
-void ft_lstadd_front(t_list **lst, t_list *new);
-int ft_lstsize(t_list *lst);
-t_list *ft_lstlast(t_list *lst);
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
+	lst = NULL;
+}

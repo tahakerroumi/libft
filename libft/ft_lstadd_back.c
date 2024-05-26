@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_bonus.h                                      :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkerroum < tkerroum@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/25 10:28:40 by tkerroum          #+#    #+#             */
-/*   Updated: 2024/05/25 18:31:52 by tkerroum         ###   ########.fr       */
+/*   Created: 2024/05/25 15:56:13 by tkerroum          #+#    #+#             */
+/*   Updated: 2024/05/25 16:06:53 by tkerroum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft_bonus.h"
 
-typedef struct s_list
+void ft_lstadd_back(t_list **lst, t_list *new)
 {
-void *content;
-struct s_list *next;
-} t_list;
+	if (!lst)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	t_list* ptr;
 
-t_list *ft_lstnew(void *content);
-void ft_lstadd_front(t_list **lst, t_list *new);
-int ft_lstsize(t_list *lst);
-t_list *ft_lstlast(t_list *lst);
+	ptr = ft_lstlast(*lst);
+	ptr->next = new;
+	new->next = NULL;
+}
